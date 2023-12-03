@@ -22,8 +22,8 @@ public class Collector : MonoBehaviour
     {
         if (IsBusy)
         {
-            float _radian = 20;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, (_target.transform.position - transform.position), _radian, 0f);
+            float radian = 20;
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, (_target.transform.position - transform.position), radian, 0f);
 
             transform.rotation = Quaternion.LookRotation(newDirection);
         }        
