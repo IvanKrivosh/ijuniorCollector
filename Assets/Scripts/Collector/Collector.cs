@@ -1,62 +1,24 @@
+using GameEvent;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Collector : MonoBehaviour
 {
-    [Range(1.0f, 10.0f)]
-    [SerializeField] private float _speed = 1.0f;    
+    [SerializeField] private TransformEvent _setTarget;
+    [SerializeField] private ResourceEvent _reachedResource;
 
-    private Rigidbody _rigidbody;
-    private Transform _target;
-    private Store _store;
-    private Resource _stash;
+    private Store _store;    
+    private Transform _target;    
 
     public bool IsBusy => _target != null;
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();        
-    }
-
-    private void Update()
-    {
-        if (IsBusy)
-        {
-            float radian = 20;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, (_target.transform.position - transform.position), radian, 0f);
-
-            transform.rotation = Quaternion.LookRotation(newDirection);
-        }        
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsBusy)
-            _rigidbody.MovePosition(_rigidbody.position + (transform.forward * _speed * Time.fixedDeltaTime));
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<Resource>(out Resource resource) && resource.transform == _target)
-        {
-            _stash = resource;
-            _target = _store.transform;
-            resource.transform.SetParent(transform);
-            resource.GetComponent<Rigidbody>().isKinematic = true;
-            resource.transform.position = new Vector3(transform.position.x, transform.position.y + transform.localScale.y, transform.position.z);
-        }
-        else if (other.gameObject.TryGetComponent<Store>(out Store store) && store.transform == _target)
-        {            
-            _target = null;
-            store.TryAddResource(this, _stash);                  
-        }
-    }
-
+    
     public bool TrySetTarget(Transform target)
     {
         if (!IsBusy)
         {
             _target = target;
+            _setTarget.Invoke(_target);
             return true;
         }
         else
@@ -76,6 +38,20 @@ public class Collector : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void OnReachedTarget(Transform target)
+    {
+        if (target.gameObject.TryGetComponent<Resource>(out Resource resource))
+        {            
+            _reachedResource.Invoke(resource);
+            _setTarget.Invoke(_store.transform);
+        }
+        else if (target.gameObject.TryGetComponent<Store>(out Store store) && _target.gameObject.TryGetComponent<Resource>(out Resource stashedResource))
+        {
+            _target = null;
+            store.TryAddResource(this, stashedResource);
+        }   
     }
 
 }

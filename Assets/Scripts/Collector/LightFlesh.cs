@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+
 public class LightFlesh : MonoBehaviour
 {
     [SerializeField] private Light _light;

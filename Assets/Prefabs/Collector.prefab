@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7217043163934414071}
   - component: {fileID: 4344166075233818794}
   - component: {fileID: 5451035474827074829}
-  - component: {fileID: 3534995442057915540}
+  - component: {fileID: 57301452490859353}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3534995442057915540
+--- !u!114 &57301452490859353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,6 +137,8 @@ GameObject:
   - component: {fileID: 2913636496293131578}
   - component: {fileID: 3662668435621279463}
   - component: {fileID: 6284967123938726401}
+  - component: {fileID: 7662681057313112204}
+  - component: {fileID: 8707264425215571724}
   m_Layer: 7
   m_Name: Collector
   m_TagString: Untagged
@@ -249,7 +251,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17cf6bf103b43d47a445f7350815e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _setTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7662681057313112204}
+        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
+        m_MethodName: OnSetTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _reachedResource:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8707264425215571724}
+        m_TargetAssemblyTypeName: Trunk, Assembly-CSharp
+        m_MethodName: OnReachedResource
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &6284967123938726401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -271,6 +302,46 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7662681057313112204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571329365003600363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e02589f5efb014ca7a25f73e527757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  _reachedTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3662668435621279463}
+        m_TargetAssemblyTypeName: Collector, Assembly-CSharp
+        m_MethodName: OnReachedTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8707264425215571724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8571329365003600363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4075ea11658cff642bb7bbe422963d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9005520464727282728
 GameObject:
   m_ObjectHideFlags: 0
