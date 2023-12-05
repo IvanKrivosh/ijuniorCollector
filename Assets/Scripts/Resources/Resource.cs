@@ -3,10 +3,9 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
     [SerializeField] private GameObject _unidentified;
-
-    private bool _identified = false;
+        
     private GameObject _unidentifiedBox;
-    public bool IsIdentified => _identified;
+    public bool IsIdentified => _unidentifiedBox == null;
 
     private void Awake()
     {
@@ -15,11 +14,11 @@ public class Resource : MonoBehaviour
 
     public bool TrySetIdentifiedState()
     {
-        if (!_identified)
-        {
-            _identified = !_identified;
+        if (!IsIdentified)
+        {            
             Destroy(_unidentifiedBox);
-            return _identified;
+            _unidentifiedBox = null;
+            return true;
         }
 
         return false;

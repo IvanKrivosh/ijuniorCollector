@@ -1,6 +1,7 @@
 using GameEvent;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Mover : MonoBehaviour
 {
     [Range(1.0f, 10.0f)]

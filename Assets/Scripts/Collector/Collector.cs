@@ -1,8 +1,6 @@
 using GameEvent;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Collector : MonoBehaviour
 {
     [SerializeField] private TransformEvent _setTarget;
