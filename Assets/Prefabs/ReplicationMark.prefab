@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4344166075233818794}
   - component: {fileID: 5451035474827074829}
   - component: {fileID: 57301452490859353}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3675113142625972287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: 0.353}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _light: {fileID: 7834518252542046396}
-  _flashingTime: 0.5
+  _flashingTime: 0.25
 --- !u!1 &8571329365003600363
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,14 +134,10 @@ GameObject:
   - component: {fileID: 8144530932229450230}
   - component: {fileID: 3475911277623655085}
   - component: {fileID: 5293515845463921431}
-  - component: {fileID: 2913636496293131578}
-  - component: {fileID: 3662668435621279463}
   - component: {fileID: 6284967123938726401}
-  - component: {fileID: 7662681057313112204}
-  - component: {fileID: 8707264425215571724}
-  - component: {fileID: 7257199795023409770}
-  m_Layer: 7
-  m_Name: Collector
+  - component: {fileID: 6709050649432164221}
+  m_Layer: 0
+  m_Name: ReplicationMark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8571329365003600363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: -4.534134, y: 1, z: 1.0304146}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -191,7 +187,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6e82ca6f184dffd469a230f9c522c155, type: 2}
+  - {fileID: 2100000, guid: 52c82619689354f498b16b1feb10412a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,75 +209,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &2913636496293131578
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571329365003600363}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
---- !u!114 &3662668435621279463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571329365003600363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17cf6bf103b43d47a445f7350815e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _setTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7662681057313112204}
-        m_TargetAssemblyTypeName: Mover, Assembly-CSharp
-        m_MethodName: OnSetTarget
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _reachedResource:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8707264425215571724}
-        m_TargetAssemblyTypeName: Trunk, Assembly-CSharp
-        m_MethodName: OnReachedResource
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &6284967123938726401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -297,13 +224,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.53521186, y: 1, z: 0.5256906}
-  m_Center: {x: 0.024190985, y: 0, z: 0.026079744}
---- !u!114 &7662681057313112204
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6709050649432164221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,50 +239,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8571329365003600363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e02589f5efb014ca7a25f73e527757, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fe2fc5349c0f2b43954c23cff44c46e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _reachedTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3662668435621279463}
-        m_TargetAssemblyTypeName: Collector, Assembly-CSharp
-        m_MethodName: OnReachedTarget
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8707264425215571724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571329365003600363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4075ea11658cff642bb7bbe422963d15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7257199795023409770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8571329365003600363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434899d2fbf5e794f9bbd43c1a173881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _garrisonTemplate: {fileID: 8567578530315178149, guid: 8b87b50ca6d040d47948ef0d21df079b, type: 3}
 --- !u!1 &9005520464727282728
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6451339263939595996}
   - component: {fileID: 7834518252542046396}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9005520464727282728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 0}
+  m_LocalPosition: {x: 0, y: 1.04, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -399,7 +285,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.8495557, b: 0.05098039, a: 1}
+  m_Color: {r: 1, g: 0.05098039, b: 0.10680196, a: 1}
   m_Intensity: 2
   m_Range: 2
   m_SpotAngle: 30

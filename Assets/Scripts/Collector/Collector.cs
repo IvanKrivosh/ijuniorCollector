@@ -1,35 +1,34 @@
 using GameEvent;
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Builder))]
 public class Collector : MonoBehaviour
 {
     [SerializeField] private TransformEvent _setTarget;
     [SerializeField] private ResourceEvent _reachedResource;
 
-    private Store _store;    
-    private Transform _target;    
+    private Queue<Transform> _targets;
+    private Builder _builder;
 
-    public bool IsBusy => _target != null;
-    
-    public bool TrySetTarget(Transform target)
+    public delegate void CompletedBuildHandler(Collector builder);
+    public event CompletedBuildHandler OnCompletedBuild;
+
+    public Transform Target { get; private set; }
+    public bool IsBusy => Target != null;
+
+    private void Awake()
     {
-        if (!IsBusy)
-        {
-            _target = target;
-            _setTarget.Invoke(_target);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        _builder = GetComponent<Builder>();
     }
 
-    public bool TrySetOwner(Store store)
+    public bool TrySetTargets(Queue<Transform> targets)
     {
         if (!IsBusy)
         {
-            _store = store;
+            _targets = targets;
+            Target = _targets.Dequeue();
+            _setTarget.Invoke(Target);
             return true;
         }
         else
@@ -40,16 +39,27 @@ public class Collector : MonoBehaviour
 
     public void OnReachedTarget(Transform target)
     {
-        if (target.gameObject.TryGetComponent<Resource>(out Resource resource))
-        {            
-            _reachedResource.Invoke(resource);
-            _setTarget.Invoke(_store.transform);
-        }
-        else if (target.gameObject.TryGetComponent<Store>(out Store store) && _target.gameObject.TryGetComponent<Resource>(out Resource stashedResource))
+        Target = null;
+
+        if (target.TryGetComponent<Resource>(out Resource resource))
         {
-            _target = null;
-            store.TryAddResource(this, stashedResource);
-        }   
+            _reachedResource.Invoke(resource);
+        }
+        else if (target.TryGetComponent<Garrison>(out Garrison garrison))
+        {
+            garrison.OnRegisteredCollector(this);
+        }
+        else if (target.TryGetComponent<ReplicationMark>(out ReplicationMark replicationMark))
+        {         
+            _builder.BuildNewStore(target.position);            
+            OnCompletedBuild.Invoke(this);
+        }       
+
+        if (_targets.Count > 0)
+        {
+            Target = _targets.Dequeue();
+            _setTarget.Invoke(Target);
+        }
     }
 
 }

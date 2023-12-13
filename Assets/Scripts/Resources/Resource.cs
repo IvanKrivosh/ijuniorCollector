@@ -10,6 +10,7 @@ public class Resource : MonoBehaviour
     private void Awake()
     {
         _unidentifiedBox = Instantiate(_unidentified, transform.position, Quaternion.identity);
+        _unidentifiedBox.transform.SetParent(transform);
     }
 
     public bool TrySetIdentifiedState()

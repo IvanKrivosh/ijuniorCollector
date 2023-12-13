@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<Resource> _resources;
     [Range(0.0f, 10.0f)]
     [SerializeField] private float _spawnTime = 5.0f;
-    [Range(1.0f, 10.0f)]
+    [Range(1.0f, 50.0f)]
     [SerializeField] private int _radiusSpawn = 5;
 
     private WaitForSeconds _spawnDelay;    
